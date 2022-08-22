@@ -1,77 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>My site</title>
-    </head>
-<body>
-    <header>
-        <h1><a href="/">Сайт с аккордами</a></h1>
-    </header>
+{% extends 'blog/base.html' %}
 
-    <article>
-        <h2><a href="">Bon Jovi - "It's my life"</a></h2>
-        <p>Am F C G<br> 
-        This aint a song for the brokenhearted Am F C G No silent pr. ...<br> 
-         (Repeat these chords in the same places until the end of the song).<br>
-          [Verse]. Am F C G<br> 
-          This is for the ones who stood their ground <br>
-          Am F C G<br>
-          For Tommy and Gina who never backed down<br> 
-          Am F<br> 
-          Tomorrow's getting harder, make no mistake.<br>  
-          C G<br>  
-          Luck ain't even lucky, gotta make your own breaks. <br> 
-          [Chorus].<br>  
-          Am <br> 
-          It's my life.<br> 
-           F C <br> 
-           It's now or never.<br>  
-           G Am <br> 
-           I ain't gonna live forever.<br>  
-           F C G <br> 
-           I just wanna live while I'm alive. <br> 
-           Am F C <br> 
-           Its my life, My heart is like an open highway.<br>  
-           G Am <br> 
-           Like Frankie said, "I did it my way". <br> 
-           F C <br> 
-           I just wanna live while I'm alive. <br> 
-           G Em Am 'Cause it's my life. [Bridge]<br> </p>
-
-
-    </article>
-         <h2><a href="">Bon Jovi - "Living on a prayer"</a></h2>
-        <p>C D <br> 
-         You live for the fight when it's all that you've got. <br> 
-         (KEY CHANGE) [Interlude] <br> 
-         Bb Eb Fsus4 F <br> 
-         Woo - oooo, we're half - way there <br> 
-         Bb Eb F7sus4 <br> 
-         Woo - oooo, livin' on a prayer <br> 
-         Gm Eb F <br> 
-         Take my hand and we'll make it I swear <br> 
-         Bb Eb F7sus4 <br> 
-         Woo - oo, living on a prayer.<br> </p> 
-
-    <article>
-
-
-
-
-
-    </article>
-
+{% block content %}
     {% for post in posts %}
-    <article>
-        <time>published: {{ post.published_date }}</time>
-        <h2><a href="">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </article>
-    {% endfor %}    
-
-    <footer>
-        ____________________________________________<br> 
-        2022 CopyRight </footer>
-
-</body>
-</html>
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </article>
+    {% endfor %}
+{% endblock %}            
